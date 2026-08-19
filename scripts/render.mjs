@@ -22,6 +22,13 @@ const snapshotPath = `snapshots/${latest.date}.json`;
 const snapshot = JSON.parse(await readFile(snapshotPath, 'utf8'));
 const snapshotProof = await snapshotSha256(snapshotPath);
 const rankImprovement = first.rank - latest.rank;
+const milestoneRanks = [100, 75, 50, 25, 1];
+const milestoneLabel = (rank) => (rank === 1 ? '#1' : `Top ${rank}`);
+const milestoneAchievements = milestoneRanks
+  .map((rank) => ({ rank, observation: points.find((point) => point.rank <= rank) }))
+  .filter(({ observation }) => observation);
+const nextMilestoneRank = milestoneRanks.find((rank) => !points.some((point) => point.rank <= rank)) ?? null;
+const nextMilestoneDistance = nextMilestoneRank === null ? 0 : latest.rank - nextMilestoneRank;
 
 let readme = await readFile('README.md', 'utf8');
 const start = '<!-- latest:start -->';
@@ -57,6 +64,28 @@ ${historyEnd}`;
 const historyPattern = new RegExp(`${historyStart}[\\s\\S]*?${historyEnd}`);
 if (!historyPattern.test(readme)) throw new Error('README history markers are missing');
 readme = readme.replace(historyPattern, historyDynamic);
+
+const milestonesStart = '<!-- milestones:start -->';
+const milestonesEnd = '<!-- milestones:end -->';
+const milestoneRows = milestoneAchievements.length > 0
+  ? milestoneAchievements
+      .map(({ rank, observation }) =>
+        `| **${milestoneLabel(rank)}** | ${formatDate(observation.date)} | #${observation.rank} | [Snapshot](snapshots/${observation.date}.json) |`)
+      .join('\n')
+  : '| _None yet_ | — | — | — |';
+const nextMilestoneLine = nextMilestoneRank === null
+  ? '**Highest milestone recorded:** #1.'
+  : `**Next:** ${milestoneLabel(nextMilestoneRank)} — **${nextMilestoneDistance} place${nextMilestoneDistance === 1 ? '' : 's'}** away.`;
+const milestonesDynamic = `${milestonesStart}
+| Milestone | First verified observation | Observed rank | Evidence |
+| --- | --- | ---: | --- |
+${milestoneRows}
+
+${nextMilestoneLine}
+${milestonesEnd}`;
+const milestonesPattern = new RegExp(`${milestonesStart}[\\s\\S]*?${milestonesEnd}`);
+if (!milestonesPattern.test(readme)) throw new Error('README milestone markers are missing');
+readme = readme.replace(milestonesPattern, milestonesDynamic);
 await writeFile('README.md', readme);
 
 const observationNumber = String(points.length).padStart(2, '0');
@@ -153,4 +182,71 @@ const trajectorySvg = `<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-l
 `;
 await writeFile('assets/trajectory.svg', trajectorySvg);
 
-console.log(`Rendered observation ${observationNumber} and trajectory through ${latest.date}`);
+const ladderPlot = { x: 450, top: 86, bottom: 398 };
+const ladderBottomRank = Math.max(150, Math.ceil(Math.max(...points.map((point) => point.rank)) / 25) * 25);
+const ladderY = (rank) =>
+  ladderPlot.top + ((rank - 1) * (ladderPlot.bottom - ladderPlot.top)) / (ladderBottomRank - 1);
+const firstLadderY = ladderY(first.rank);
+const latestLadderY = ladderY(latest.rank);
+const movementMidY = (firstLadderY + latestLadderY) / 2;
+const movementWord = rankImprovement >= 0 ? 'climbed' : 'fell';
+const ladderMilestones = [...milestoneRanks].reverse().map((rank) => {
+  const reached = points.some((point) => point.rank <= rank);
+  const isNext = rank === nextMilestoneRank;
+  const status = reached ? 'reached' : isNext ? 'next' : 'future';
+  const suffix = reached
+    ? ' · REACHED'
+    : isNext
+      ? ` · NEXT (${nextMilestoneDistance} PLACE${nextMilestoneDistance === 1 ? '' : 'S'})`
+      : '';
+  const emphasized = reached || isNext;
+  return `<g><line class="milestone ${status}" data-milestone="${rank}" data-status="${status}" x1="438" x2="462" y1="${ladderY(rank).toFixed(1)}" y2="${ladderY(rank).toFixed(1)}" stroke-width="5" stroke-linecap="round"/><text class="${emphasized ? 'label' : 'muted'}" x="490" y="${(ladderY(rank) + 4).toFixed(1)}" font-size="13" font-weight="${emphasized ? '600' : '400'}">${milestoneLabel(rank).toUpperCase()}${suffix}</text></g>`;
+}).join('\n  ');
+
+const ladderSvg = `<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ladder-title ladder-desc" viewBox="0 0 900 460">
+  <title id="ladder-title">Daniele-Cangi Denmark ranking ladder</title>
+  <desc id="ladder-desc">Number 1 is at the top. Public contribution rank ${movementWord} ${Math.abs(rankImprovement)} places from number ${first.rank} on ${formatDate(first.date)} to number ${latest.rank} on ${formatDate(latest.date)}. ${nextMilestoneRank === null ? 'The number 1 milestone is recorded.' : `${milestoneLabel(nextMilestoneRank)} is ${nextMilestoneDistance} places away.`}</desc>
+  <style>
+    .frame, .rule, .track, .connector { fill: none; stroke: #d0d7de; }
+    .label { fill: #24292f; }
+    .muted { fill: #57606a; }
+    .climb { stroke: #0969da; }
+    .current { fill: #0969da; stroke: #ffffff; }
+    .baseline { fill: #6e7781; stroke: #ffffff; }
+    .milestone.reached { stroke: #1a7f37; }
+    .milestone.next { stroke: #0969da; }
+    .milestone.future { stroke: #afb8c1; }
+    text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    @media (prefers-color-scheme: dark) {
+      .frame, .rule, .track, .connector { stroke: #30363d; }
+      .label { fill: #c9d1d9; }
+      .muted { fill: #8b949e; }
+      .climb, .milestone.next { stroke: #58a6ff; }
+      .current { fill: #58a6ff; stroke: #0d1117; }
+      .baseline { fill: #8b949e; stroke: #0d1117; }
+      .milestone.reached { stroke: #3fb950; }
+      .milestone.future { stroke: #484f58; }
+    }
+  </style>
+  <rect class="frame" x="0.5" y="0.5" width="899" height="459"/>
+  <text class="label" x="60" y="34" font-size="16" font-weight="600" letter-spacing="1.5">RANKING LADDER</text>
+  <text class="muted" x="840" y="34" text-anchor="end" font-size="12" letter-spacing="0.8">#1 IS HIGHER · LOWER NUMBER = BETTER</text>
+  <line class="rule" x1="60" x2="840" y1="52" y2="52"/>
+  <line class="track" x1="450" x2="450" y1="86" y2="398" stroke-width="4" stroke-linecap="round"/>
+  ${ladderMilestones}
+  <line class="climb" x1="450" x2="450" y1="${firstLadderY.toFixed(1)}" y2="${latestLadderY.toFixed(1)}" stroke-width="6" stroke-linecap="round"/>
+  <line class="connector" x1="418" x2="438" y1="${latestLadderY.toFixed(1)}" y2="${latestLadderY.toFixed(1)}"/>
+  <circle class="current" data-rank="${latest.rank}" cx="450" cy="${latestLadderY.toFixed(1)}" r="10" stroke-width="3"/>
+  <text class="label" x="408" y="${(latestLadderY + 5).toFixed(1)}" text-anchor="end" font-size="15" font-weight="600">${escapeXml(formatDate(latest.date))} · #${latest.rank}</text>
+  <line class="connector" x1="418" x2="438" y1="${firstLadderY.toFixed(1)}" y2="${firstLadderY.toFixed(1)}"/>
+  <circle class="baseline" data-rank="${first.rank}" cx="450" cy="${firstLadderY.toFixed(1)}" r="7" stroke-width="3"/>
+  <text class="muted" x="408" y="${(firstLadderY + 5).toFixed(1)}" text-anchor="end" font-size="13">${escapeXml(formatDate(first.date))} · #${first.rank}</text>
+  <text class="label" x="400" y="${(movementMidY + 5).toFixed(1)}" text-anchor="end" font-size="14" font-weight="600">${rankImprovement >= 0 ? '↑' : '↓'} ${Math.abs(rankImprovement)} PLACES</text>
+  <line class="rule" x1="60" x2="840" y1="418" y2="418"/>
+  <text class="muted" x="60" y="442" font-size="11" letter-spacing="0.8">FIRST VERIFIED THRESHOLDS · NOT A FORECAST</text>
+  <text class="muted" x="840" y="442" text-anchor="end" font-size="11">through ${escapeXml(formatDate(latest.date))}</text>
+</svg>
+`;
+await writeFile('assets/ladder.svg', ladderSvg);
+
+console.log(`Rendered observation ${observationNumber}, trajectory, ladder, and milestones through ${latest.date}`);

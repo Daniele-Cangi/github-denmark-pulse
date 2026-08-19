@@ -66,8 +66,9 @@ only through `workflow_dispatch`.
    reproduces the upstream stable-sort sequence, checks every emitted login,
    rank, and value, requires GraphQL pagination to finish, and rejects nonzero
    observed Octokit errors.
-6. Only the CSV history, a dated JSON snapshot, the README summary, and the SVG
-   trajectory are committed here. The temporary upstream checkout is ignored.
+6. Only the CSV history, a dated JSON snapshot, the generated SVGs, and the
+   README summary and milestone log are committed here. The temporary upstream
+   checkout is ignored.
 
 GitHub Actions and the upstream engine are fixed to full commit SHAs in the
 workflow. The selected upstream data commit and the engine commit are written
@@ -111,3 +112,16 @@ This chain is an integrity aid, not an independent timestamp or digital
 signature. A coordinated rewrite can recompute every link; the Git commit
 history, pinned upstream SHAs, workflow runs, and source hashes remain the
 external audit anchors.
+
+## Milestone derivation
+
+The ranking ladder places `#1` at the top and plots the first and latest public
+rank observations on a linear rank scale. It marks Top 100, Top 75, Top 50,
+Top 25, and `#1`. The distance to the next milestone is simple rank arithmetic;
+for example, rank `#81` is six places from Top 75.
+
+A milestone enters the README log at the first recorded observation whose
+public rank is equal to or better than its threshold. That date is the first
+verified observation of the milestone, not a claim about the unobserved day on
+which the threshold was crossed. The ladder and log are descriptive and do not
+forecast future movement.
