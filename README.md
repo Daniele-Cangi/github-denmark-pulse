@@ -22,6 +22,23 @@ latest snapshot hash. They identify the snapshot; they do not encode time or
 direction. Each dated JSON links to the canonical SHA-256 of its predecessor,
 forming a small tamper-evident chain that `npm run verify` checks end to end.
 
+## Ranking ladder
+
+![Denmark public contribution ranking ladder](assets/ladder.svg)
+
+`#1` is at the top, so movement upward means a better position. Thresholds are
+logged only when a dated snapshot verifies them.
+
+## Milestone log
+
+<!-- milestones:start -->
+| Milestone | First verified observation | Observed rank | Evidence |
+| --- | --- | ---: | --- |
+| **Top 100** | 19 August 2026 | #81 | [Snapshot](snapshots/2026-08-19.json) |
+
+**Next:** Top 75 — **6 places** away.
+<!-- milestones:end -->
+
 ## Trajectory
 
 ![Public contribution rank trajectory](assets/trajectory.svg)
@@ -45,7 +62,7 @@ The manual-only workflow runs the upstream Denmark ranking with the same
 country configuration and a ranking engine fixed to an exact commit. It then
 checks every generated row against the cache before updating the small history
 layer in this repository. It also links the new snapshot to its predecessor and
-regenerates both GitHub-native SVGs.
+regenerates all GitHub-native SVGs and the milestone log.
 
 For definitions, validation rules, reproducibility instructions, and known
 limits, read [`docs/METHODOLOGY.md`](docs/METHODOLOGY.md). The original August

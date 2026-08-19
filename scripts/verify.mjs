@@ -1,5 +1,5 @@
 import { access, readFile } from 'node:fs/promises';
-import { integer, readHistory, snapshotSha256 } from './lib.mjs';
+import { formatDate, integer, readHistory, snapshotSha256 } from './lib.mjs';
 
 const history = await readHistory();
 if (history.length < 2) throw new Error('History must contain at least two observations');
@@ -61,11 +61,12 @@ if (snapshot.validation.maximum_observed_octokit_errors !== 0) throw new Error('
 if (!/^[0-9a-f]{40}$/.test(snapshot.provenance.data_commit_sha)) throw new Error('Data SHA is not full length');
 if (!/^[0-9a-f]{40}$/.test(snapshot.provenance.action_commit_sha)) throw new Error('Action SHA is not full length');
 
-const [readme, workflow, svg, observationSvg, notices] = await Promise.all([
+const [readme, workflow, svg, observationSvg, ladderSvg, notices] = await Promise.all([
   readFile('README.md', 'utf8'),
   readFile('.github/workflows/capture-denmark.yml', 'utf8'),
   readFile('assets/trajectory.svg', 'utf8'),
   readFile('assets/observation.svg', 'utf8'),
+  readFile('assets/ladder.svg', 'utf8'),
   readFile('THIRD_PARTY_NOTICES.md', 'utf8')
 ]);
 if (
@@ -98,7 +99,47 @@ if (
 ) {
   throw new Error('Observation SVG fingerprint does not represent the latest snapshot proof');
 }
+const milestoneRanks = [100, 75, 50, 25, 1];
+const latestRank = Number(latest.public_rank);
+const firstRank = Number(history[0].public_rank);
+const nextMilestoneRank = milestoneRanks.find(
+  (rank) => !history.some((row) => Number(row.public_rank) <= rank)
+) ?? null;
+const nextMilestoneDistance = nextMilestoneRank === null ? 0 : latestRank - nextMilestoneRank;
+const ladderBottomRank = Math.max(150, Math.ceil(Math.max(...history.map((row) => Number(row.public_rank))) / 25) * 25);
+const ladderY = (rank) => 86 + ((rank - 1) * (398 - 86)) / (ladderBottomRank - 1);
+const expectedNextDescription = nextMilestoneRank === null
+  ? 'The number 1 milestone is recorded.'
+  : `${nextMilestoneRank === 1 ? '#1' : `Top ${nextMilestoneRank}`} is ${nextMilestoneDistance} places away.`;
+const expectedMilestoneSummary = nextMilestoneRank === null
+  ? '**Highest milestone recorded:** #1.'
+  : `**Next:** ${nextMilestoneRank === 1 ? '#1' : `Top ${nextMilestoneRank}`} — **${nextMilestoneDistance} place${nextMilestoneDistance === 1 ? '' : 's'}** away.`;
+if (
+  !ladderSvg.includes('<title') ||
+  !ladderSvg.includes('<desc') ||
+  !ladderSvg.includes('#1 IS HIGHER · LOWER NUMBER = BETTER') ||
+  !ladderSvg.includes(`data-rank="${latestRank}" cx="450" cy="${ladderY(latestRank).toFixed(1)}"`) ||
+  !ladderSvg.includes(`data-rank="${firstRank}" cx="450" cy="${ladderY(firstRank).toFixed(1)}"`) ||
+  !ladderSvg.includes(expectedNextDescription) ||
+  !readme.includes('assets/ladder.svg') ||
+  !readme.includes(expectedMilestoneSummary)
+) {
+  throw new Error('Ranking ladder or milestone log is stale');
+}
+for (const rank of milestoneRanks) {
+  const reached = history.some((row) => Number(row.public_rank) <= rank);
+  const status = reached ? 'reached' : rank === nextMilestoneRank ? 'next' : 'future';
+  if (!ladderSvg.includes(`data-milestone="${rank}" data-status="${status}"`)) {
+    throw new Error(`Ranking ladder has the wrong status for milestone ${rank}`);
+  }
+  const observation = history.find((row) => Number(row.public_rank) <= rank);
+  const label = rank === 1 ? '#1' : `Top ${rank}`;
+  if (observation && !readme.includes(`| **${label}** | ${formatDate(observation.date)} | #${observation.public_rank} |`)) {
+    throw new Error(`README milestone log is stale for ${rank}`);
+  }
+}
 if (/\bschedule\s*:/i.test(workflow)) throw new Error('Workflow must remain manual-only');
+if (!workflow.includes('assets/ladder.svg')) throw new Error('Workflow does not stage the ranking ladder');
 for (const sha of [
   '11d5960a326750d5838078e36cf38b85af677262',
   '49933ea5288caeca8642d1e84afbd3f7d6820020',
