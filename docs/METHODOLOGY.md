@@ -23,18 +23,27 @@ run provides them.
 - **Candidate count** is the size of the Denmark cache, not the population of
   Denmark and not every GitHub account located there.
 
-Contribution values are capture-time aggregates returned through GitHub's
-contribution collection. They can rise or fall as the collection window and
-GitHub's underlying data change. Rankings are therefore snapshots, not lifetime
-scores.
+The pinned GraphQL query requests `login`, `avatarUrl`, `name`, `location`,
+`company`, `twitterUsername`, `followers.totalCount`,
+`contributionsCollection.contributionCalendar.totalContributions`, and
+`contributionsCollection.restrictedContributionsCount`, plus pagination fields
+`endCursor` and `hasNextPage`. The cached public value is calculated exactly as
+`totalContributions - restrictedContributionsCount`.
+
+The query does not provide explicit `from` or `to` arguments to
+`contributionsCollection`, so it uses GitHub's default rolling contribution
+window. Values can rise or fall as that window and GitHub's underlying data
+change. Rankings are therefore snapshots, not lifetime scores.
 
 ## Candidate discovery and limits
 
-The upstream country configuration searches for Denmark and the cities
-Copenhagen, Aarhus, Aalborg, Odense, Esbjerg, and Kolding. The upstream engine
-also applies its own follower threshold and GitHub Search pagination behavior.
-For the 19 August 2026 run, 912 candidate records were retained and the search
-log reached `hasNextPage: false`.
+The upstream country configuration searches GitHub users by Denmark and the
+cities Copenhagen, Aarhus, Aalborg, Odense, Esbjerg, and Kolding, with the
+search ordered by `followers-desc`. The engine also applies its own follower
+threshold and paginates the search. GitHub Search exposes at most 1,000 results
+for a query, so a sufficiently large location search can be truncated. For the
+19 August 2026 run, 912 candidate records were retained and the search log
+reached `hasNextPage: false`.
 
 Location text is self-reported and can be absent, ambiguous, or stale. Search
 limits, API behavior, renamed accounts, ties, and upstream code changes can all
