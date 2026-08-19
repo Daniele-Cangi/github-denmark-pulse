@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 900 340">
+  <title id="title">Daniele-Cangi public contribution rank in Denmark</title>
+  <desc id="desc">Rank improved from number 145 on 23 May 2026 to number 81 on 19 August 2026.</desc>
+  <style>
+    :root { color: #24292f; }
+    .muted { fill: #57606a; }
+    .grid { stroke: #d0d7de; }
+    .line { stroke: #0969da; }
+    .point { fill: #0969da; stroke: #ffffff; }
+    .label { fill: #24292f; }
+    text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    @media (prefers-color-scheme: dark) {
+      :root { color: #c9d1d9; }
+      .muted { fill: #8b949e; }
+      .grid { stroke: #30363d; }
+      .line { stroke: #58a6ff; }
+      .point { fill: #58a6ff; stroke: #0d1117; }
+      .label { fill: #c9d1d9; }
+    }
+  </style>
+  <text class="label" x="92" y="26" font-size="18" font-weight="600">Public contribution rank</text>
+  <text class="muted" x="846" y="26" text-anchor="end" font-size="13">Lower is better</text>
+  <g><line class="grid" x1="92" x2="846" y1="56.0" y2="56.0" stroke-width="1"/><text class="muted" x="78" y="61.0" text-anchor="end" font-size="13">#69</text></g>
+  <g><line class="grid" x1="92" x2="846" y1="162.0" y2="162.0" stroke-width="1"/><text class="muted" x="78" y="167.0" text-anchor="end" font-size="13">#113</text></g>
+  <g><line class="grid" x1="92" x2="846" y1="268.0" y2="268.0" stroke-width="1"/><text class="muted" x="78" y="273.0" text-anchor="end" font-size="13">#157</text></g>
+  <path d="M 92.0 239.1 L 846.0 84.9" class="line" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <g><circle class="point" cx="92.0" cy="239.1" r="7" stroke-width="3"/><text class="label" x="92.0" y="221.1" text-anchor="start" font-size="14" font-weight="600">#145 · 615 public</text><text class="muted" x="92.0" y="312" text-anchor="start" font-size="13">23 May 2026</text></g>
+  <g><circle class="point" cx="846.0" cy="84.9" r="7" stroke-width="3"/><text class="label" x="846.0" y="66.9" text-anchor="end" font-size="14" font-weight="600">#81 · 1,412 public</text><text class="muted" x="846.0" y="312" text-anchor="end" font-size="13">19 August 2026</text></g>
+</svg>

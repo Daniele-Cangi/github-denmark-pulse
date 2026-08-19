@@ -1,0 +1,98 @@
+name: Capture Denmark snapshot
+
+on:
+  workflow_dispatch:
+    inputs:
+      data_ref:
+        description: Upstream data branch, tag, or full commit SHA
+        required: true
+        default: main
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: capture-denmark
+  cancel-in-progress: false
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out presentation layer
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+
+      - name: Check out upstream data
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: gayanvoice/top-github-users
+          ref: ${{ inputs.data_ref }}
+          path: .run/data
+          persist-credentials: false
+
+      - name: Check out pinned ranking engine
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: gayanvoice/top-github-users-action
+          ref: 2b5c26a06abea2b0a7ba98a013ff0ce7fc913477
+          path: .run/action
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24
+
+      - name: Prepare Denmark checkpoint
+        run: node scripts/prepare-engine.mjs .run/data
+
+      - name: Record upstream data commit
+        id: data
+        shell: bash
+        run: echo "sha=$(git -C .run/data rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Run pinned upstream engine
+        working-directory: .run/data
+        shell: bash
+        env:
+          CUSTOM_TOKEN: ${{ secrets.CUSTOM_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          if [ -z "$CUSTOM_TOKEN" ]; then
+            echo "Repository secret CUSTOM_TOKEN is required."
+            exit 1
+          fi
+          set -o pipefail
+          node ../action/dist/index.js | tee ../action.log
+
+      - name: Validate and capture
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: >-
+          node scripts/capture-snapshot.mjs
+          --engine .run/data
+          --log .run/action.log
+          --data-sha ${{ steps.data.outputs.sha }}
+          --action-sha 2b5c26a06abea2b0a7ba98a013ff0ce7fc913477
+          --run-url "$RUN_URL"
+
+      - name: Render and verify
+        run: |
+          npm run render
+          npm run verify
+
+      - name: Commit changed evidence
+        shell: bash
+        run: |
+          if git diff --quiet -- README.md assets/trajectory.svg data/history.csv snapshots; then
+            echo "No observation changed."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md assets/trajectory.svg data/history.csv snapshots/
+          git commit -m "Capture Denmark $(date -u +%F)"
+          git push

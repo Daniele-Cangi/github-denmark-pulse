@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "country": "Denmark",
+  "country_code": "DK",
+  "account": "Daniele-Cangi",
+  "captured_at": "2026-08-19T16:02:00Z",
+  "time_precision": "minute",
+  "candidate_count": 912,
+  "metrics": {
+    "public_contributions": {
+      "rank": 81,
+      "value": 1412
+    },
+    "total_contributions": {
+      "rank": 76,
+      "value": 3615
+    },
+    "restricted_contributions": {
+      "value": 2203
+    },
+    "followers": {
+      "rank": 115,
+      "value": 297
+    }
+  },
+  "movement": {
+    "baseline_date": "2026-05-23",
+    "baseline_public_rank": 145,
+    "baseline_public_contributions": 615,
+    "rank_improvement": 64,
+    "public_contributions_change": 797,
+    "public_contributions_change_percent": 129.6
+  },
+  "public_contribution_thresholds": {
+    "10": 6557,
+    "20": 4315,
+    "25": 3700,
+    "30": 3257,
+    "40": 2463,
+    "50": 2005,
+    "75": 1508,
+    "100": 1084
+  },
+  "provenance": {
+    "data_repository": "gayanvoice/top-github-users",
+    "data_commit_sha": "f26e9755828edeb3ce50d9816d087f861307d0af",
+    "action_repository": "gayanvoice/top-github-users-action",
+    "action_commit_sha": "2b5c26a06abea2b0a7ba98a013ff0ce7fc913477",
+    "evidence_repository": "Daniele-Cangi/top-github-users",
+    "evidence_commit_sha": "adc6d595475975a9ff83ee81ba6addefe8ef05ba",
+    "workflow_run_id": 32272528671,
+    "workflow_run_url": "https://github.com/Daniele-Cangi/top-github-users/actions/runs/32272528671",
+    "evidence_files": {
+      "cache/denmark.json": {
+        "sha256": "4f5e6e84794c43acb6bb54b4f89fefba7d13ef7d48669ea9a002ec4f338a6fb0"
+      },
+      "markdown/public_contributions/denmark.md": {
+        "sha256": "0a24d8fbe4e9a0376e0a895f85e2668e28ca551bf76cae385d80a0512e8216b2"
+      },
+      "markdown/total_contributions/denmark.md": {
+        "sha256": "fa344ddf6837beef03cd28ca06cecb854e248bb02f5f6e605eb2f1594ce0560d1"
+      },
+      "markdown/followers/denmark.md": {
+        "sha256": "f914afdb0ee1a69892a94bfbe381edfb639dfaf71e5eb6127d59afacd30d8a8c"
+      }
+    }
+  },
+  "validation": {
+    "candidate_records": 912,
+    "graphql_search_completed": true,
+    "maximum_observed_octokit_errors": 0,
+    "rows_checked": {
+      "public_contributions": 799,
+      "total_contributions": 834,
+      "followers": 912
+    },
+    "all_generated_rows_match_cache": true
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "github-denmark-pulse",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A compact, reproducible history of Daniele-Cangi's GitHub ranking in Denmark.",
+  "license": "MIT",
+  "scripts": {
+    "render": "node scripts/render.mjs",
+    "verify": "node scripts/verify.mjs",
+    "test": "npm run verify"
+  }
+}
