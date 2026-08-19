@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "country": "Denmark",
+  "country_code": "DK",
+  "account": "Daniele-Cangi",
+  "captured_at": "2026-05-23",
+  "time_precision": "date",
+  "candidate_count": null,
+  "metrics": {
+    "public_contributions": {
+      "rank": 145,
+      "value": 615
+    },
+    "total_contributions": null,
+    "restricted_contributions": null,
+    "followers": null
+  },
+  "movement": null,
+  "public_contribution_thresholds": null,
+  "previous_snapshot_date": null,
+  "previous_snapshot_sha256": null,
+  "provenance": {
+    "data_repository": "gayanvoice/top-github-users",
+    "data_commit_sha": "f26e9755828edeb3ce50d9816d087f861307d0af",
+    "action_repository": null,
+    "action_commit_sha": null,
+    "evidence_repository": "Daniele-Cangi/top-github-users",
+    "evidence_commit_sha": "f26e9755828edeb3ce50d9816d087f861307d0af",
+    "workflow_run_id": null,
+    "workflow_run_url": null,
+    "evidence_files": {
+      "markdown/public_contributions/denmark.md": {
+        "sha256": null,
+        "source": "https://github.com/Daniele-Cangi/top-github-users/blob/f26e9755828edeb3ce50d9816d087f861307d0af/markdown/public_contributions/denmark.md"
+      }
+    }
+  },
+  "validation": {
+    "historical_source_only": true,
+    "candidate_records": null,
+    "graphql_search_completed": null,
+    "maximum_observed_octokit_errors": null,
+    "rows_checked": null,
+    "all_generated_rows_match_cache": null
+  }
+}

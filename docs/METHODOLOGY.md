@@ -89,3 +89,23 @@ public-contributions table present at upstream data commit
 `f26e9755828edeb3ce50d9816d087f861307d0af`. Only the public rank and public
 contribution count are asserted for that date; unavailable secondary fields
 remain empty rather than being inferred.
+
+## Integrity chain
+
+Every history row has a corresponding dated JSON snapshot. Each snapshot after
+the first records `previous_snapshot_date` and `previous_snapshot_sha256`. The
+hash is calculated from canonical JSON: object keys are sorted recursively,
+arrays retain their order, insignificant whitespace is removed, and the UTF-8
+result is hashed with SHA-256. This makes the value independent of Windows or
+Linux line endings.
+
+The latest observation SVG displays the first 12 hexadecimal characters of its
+own canonical snapshot hash. Its pulse trace is derived deterministically from
+the first 32 characters, so the plate changes whenever the observation or its
+provenance changes. `npm run verify` recomputes every link from oldest to newest
+and confirms that the SVG represents the latest JSON.
+
+This chain is an integrity aid, not an independent timestamp or digital
+signature. A coordinated rewrite can recompute every link; the Git commit
+history, pinned upstream SHAs, workflow runs, and source hashes remain the
+external audit anchors.
