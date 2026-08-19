@@ -100,10 +100,12 @@ result is hashed with SHA-256. This makes the value independent of Windows or
 Linux line endings.
 
 The latest observation SVG displays the first 12 hexadecimal characters of its
-own canonical snapshot hash. Its pulse trace is derived deterministically from
-the first 32 characters, so the plate changes whenever the observation or its
-provenance changes. `npm run verify` recomputes every link from oldest to newest
-and confirms that the SVG represents the latest JSON.
+own canonical snapshot hash. Its fingerprint bars are derived deterministically
+from the first 32 characters, so the plate changes whenever the observation or
+its provenance changes. The bars identify the snapshot; their order and height
+do not encode time, rank direction, or a trend. The trajectory SVG is the only
+time-series chart. `npm run verify` recomputes every link from oldest to newest
+and confirms that the observation SVG represents the latest JSON.
 
 This chain is an integrity aid, not an independent timestamp or digital
 signature. A coordinated rewrite can recompute every link; the Git commit

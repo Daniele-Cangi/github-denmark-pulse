@@ -80,21 +80,23 @@ if (!svg.includes('<title') || !svg.includes('<desc') || !svg.includes(`number $
 }
 const latestProof = await snapshotSha256(snapshotPaths.at(-1));
 const observationNumber = String(history.length).padStart(2, '0');
-const expectedPulsePoints = [...latestProof.slice(0, 32)]
+const expectedFingerprintBars = [...latestProof.slice(0, 32)]
   .map((character, index) => {
-    const x = 60 + (index * 780) / 31;
-    const y = 226 - (Number.parseInt(character, 16) - 7.5) * 3.4;
-    return `${x.toFixed(1)},${y.toFixed(1)}`;
+    const x = 60 + (index * 768) / 31;
+    const height = 8 + Number.parseInt(character, 16) * 2;
+    const y = 250 - height;
+    return `<rect class="fingerprint" x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="12" height="${height.toFixed(1)}" rx="2"/>`;
   })
-  .join(' ');
+  .join('\n  ');
 if (
   !observationSvg.includes('<title') ||
   !observationSvg.includes('<desc') ||
   !observationSvg.includes(`OBSERVATION ${observationNumber}`) ||
+  !observationSvg.includes('SNAPSHOT FINGERPRINT · SHA-256') ||
   !observationSvg.includes(latestProof.slice(0, 12)) ||
-  !observationSvg.includes(`points="${expectedPulsePoints}"`)
+  !observationSvg.includes(expectedFingerprintBars)
 ) {
-  throw new Error('Observation SVG does not represent the latest snapshot proof');
+  throw new Error('Observation SVG fingerprint does not represent the latest snapshot proof');
 }
 if (/\bschedule\s*:/i.test(workflow)) throw new Error('Workflow must remain manual-only');
 for (const sha of [
