@@ -64,28 +64,29 @@ const engineShort = snapshot.provenance.action_commit_sha?.slice(0, 8) ?? 'histo
 const proofShort = snapshotProof.slice(0, 12);
 const movement = snapshot.movement?.rank_improvement ?? rankImprovement;
 const movementLabel = `${movement >= 0 ? '↑' : '↓'}${Math.abs(movement)}`;
-const pulsePoints = [...snapshotProof.slice(0, 32)]
+const fingerprintBars = [...snapshotProof.slice(0, 32)]
   .map((character, index) => {
-    const x = 60 + (index * 780) / 31;
-    const y = 226 - (Number.parseInt(character, 16) - 7.5) * 3.4;
-    return `${x.toFixed(1)},${y.toFixed(1)}`;
+    const x = 60 + (index * 768) / 31;
+    const height = 8 + Number.parseInt(character, 16) * 2;
+    const y = 250 - height;
+    return `<rect class="fingerprint" x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="12" height="${height.toFixed(1)}" rx="2"/>`;
   })
-  .join(' ');
+  .join('\n  ');
 
 const observationSvg = `<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="observation-title observation-desc" viewBox="0 0 900 300">
   <title id="observation-title">GitHub Denmark Pulse observation ${observationNumber}</title>
-  <desc id="observation-desc">On ${formatDate(latest.date)}, Daniele-Cangi ranked number ${latest.rank} with ${formatNumber(latest.contributions)} public contributions. Canonical snapshot proof begins ${proofShort}.</desc>
+  <desc id="observation-desc">On ${formatDate(latest.date)}, Daniele-Cangi ranked number ${latest.rank} with ${formatNumber(latest.contributions)} public contributions. The bars are a non-temporal fingerprint of the canonical snapshot hash, whose proof begins ${proofShort}.</desc>
   <style>
     .frame, .rule { fill: none; stroke: #d0d7de; }
     .text { fill: #24292f; }
     .muted { fill: #57606a; }
-    .pulse { fill: none; stroke: #0969da; }
+    .fingerprint { fill: #0969da; }
     text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
     @media (prefers-color-scheme: dark) {
       .frame, .rule { stroke: #30363d; }
       .text { fill: #c9d1d9; }
       .muted { fill: #8b949e; }
-      .pulse { stroke: #58a6ff; }
+      .fingerprint { fill: #58a6ff; }
     }
   </style>
   <rect class="frame" x="0.5" y="0.5" width="899" height="299"/>
@@ -99,8 +100,9 @@ const observationSvg = `<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-
   <text class="muted" x="570" y="88" font-size="12" letter-spacing="1">MOVEMENT</text>
   <text class="text" x="570" y="138" font-size="42" font-weight="500">${movementLabel}</text>
   <text class="muted" x="570" y="162" font-size="12">since ${formatDate(snapshot.movement?.baseline_date ?? first.date)}</text>
-  <line class="rule" x1="60" x2="840" y1="226" y2="226"/>
-  <polyline class="pulse" points="${pulsePoints}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <line class="rule" x1="60" x2="840" y1="180" y2="180"/>
+  <text class="muted" x="60" y="204" font-size="11" letter-spacing="1.2">SNAPSHOT FINGERPRINT · SHA-256</text>
+  ${fingerprintBars}
   <text class="muted" x="60" y="278" font-size="12" letter-spacing="0.5">ENGINE ${engineShort} · PROOF ${proofShort}</text>
   <text class="muted" x="840" y="278" text-anchor="end" font-size="12">${escapeXml(formatDate(latest.date))}</text>
 </svg>

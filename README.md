@@ -17,8 +17,9 @@ Captured 19 August 2026. Secondary measures: **#76** by total contributions
 
 ![Latest verifiable observation](assets/observation.svg)
 
-The pulse trace and proof prefix are deterministically derived from the latest
-snapshot. Each dated JSON links to the canonical SHA-256 of its predecessor,
+The fingerprint bars and proof prefix are deterministically derived from the
+latest snapshot hash. They identify the snapshot; they do not encode time or
+direction. Each dated JSON links to the canonical SHA-256 of its predecessor,
 forming a small tamper-evident chain that `npm run verify` checks end to end.
 
 ## Trajectory
