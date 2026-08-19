@@ -8,6 +8,7 @@ import {
   readHistory,
   reproduceUpstreamRankings,
   sha256,
+  snapshotSha256,
   writeHistory
 } from './lib.mjs';
 
@@ -61,6 +62,9 @@ const capturedAt = parseCaptureTime(publicText);
 const date = capturedAt.slice(0, 10);
 const history = await readHistory();
 const previous = history.filter((row) => row.date < date).at(-1);
+const previousSnapshotSha256 = previous
+  ? await snapshotSha256(`snapshots/${previous.date}.json`)
+  : null;
 const rankImprovement = previous ? Number(previous.public_rank) - publicMetric.rank : null;
 const contributionChange = previous ? publicMetric.value - Number(previous.public_contributions) : null;
 const thresholds = Object.fromEntries(
@@ -107,6 +111,8 @@ const snapshot = {
       }
     : null,
   public_contribution_thresholds: thresholds,
+  previous_snapshot_date: previous?.date ?? null,
+  previous_snapshot_sha256: previousSnapshotSha256,
   provenance: {
     data_repository: 'gayanvoice/top-github-users',
     data_commit_sha: args['data-sha'],

@@ -15,14 +15,24 @@ Captured 19 August 2026. Secondary measures: **#76** by total contributions
 (297). [Inspect the snapshot](snapshots/2026-08-19.json).
 <!-- latest:end -->
 
+![Latest verifiable observation](assets/observation.svg)
+
+The pulse trace and proof prefix are deterministically derived from the latest
+snapshot. Each dated JSON links to the canonical SHA-256 of its predecessor,
+forming a small tamper-evident chain that `npm run verify` checks end to end.
+
+## Trajectory
+
 ![Public contribution rank trajectory](assets/trajectory.svg)
 
 ## Recorded history
 
+<!-- history:start -->
 | Date | Public rank | Public contributions | Change |
 | --- | ---: | ---: | ---: |
 | 23 May 2026 | #145 | 615 | baseline |
 | 19 August 2026 | #81 | 1,412 | +64 places |
+<!-- history:end -->
 
 The chart is deliberately a trajectory, not a forecast. It connects two
 verified observations and makes no claim about the unobserved days between
@@ -33,7 +43,8 @@ them. The full append-only record is in [`data/history.csv`](data/history.csv).
 The manual-only workflow runs the upstream Denmark ranking with the same
 country configuration and a ranking engine fixed to an exact commit. It then
 checks every generated row against the cache before updating the small history
-layer in this repository.
+layer in this repository. It also links the new snapshot to its predecessor and
+regenerates both GitHub-native SVGs.
 
 For definitions, validation rules, reproducibility instructions, and known
 limits, read [`docs/METHODOLOGY.md`](docs/METHODOLOGY.md). The original August

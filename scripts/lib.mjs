@@ -78,6 +78,27 @@ export async function sha256(path) {
   return createHash('sha256').update(content).digest('hex');
 }
 
+function canonicalize(value) {
+  if (Array.isArray(value)) return value.map(canonicalize);
+  if (value && typeof value === 'object') {
+    return Object.fromEntries(
+      Object.keys(value)
+        .sort()
+        .map((key) => [key, canonicalize(value[key])])
+    );
+  }
+  return value;
+}
+
+export function canonicalJsonSha256(value) {
+  const canonicalJson = JSON.stringify(canonicalize(value));
+  return createHash('sha256').update(canonicalJson, 'utf8').digest('hex');
+}
+
+export async function snapshotSha256(path) {
+  return canonicalJsonSha256(JSON.parse(await readFile(path, 'utf8')));
+}
+
 export function parseCaptureTime(markdown) {
   const match = markdown.match(/on `([0-9]{4})\/([0-9]{1,2})\/([0-9]{1,2}) ([0-9]{1,2}):([0-9]{2}) (AM|PM) UTC`/i);
   if (!match) throw new Error('Could not read the UTC capture time from the generated table');

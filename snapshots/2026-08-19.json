@@ -41,6 +41,8 @@
     "75": 1508,
     "100": 1084
   },
+  "previous_snapshot_date": "2026-05-23",
+  "previous_snapshot_sha256": "f68505d1c040fa8623d779a6451ff10c1d39debafea456964262a8cebae4515c",
   "provenance": {
     "data_repository": "gayanvoice/top-github-users",
     "data_commit_sha": "f26e9755828edeb3ce50d9816d087f861307d0af",
