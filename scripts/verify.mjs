@@ -87,15 +87,14 @@ const expectedFingerprintBars = [...latestProof.slice(0, 32)]
     const height = 8 + Number.parseInt(character, 16) * 2;
     const y = 250 - height;
     return `<rect class="fingerprint" x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="12" height="${height.toFixed(1)}" rx="2"/>`;
-  })
-  .join('\n  ');
+  });
 if (
   !observationSvg.includes('<title') ||
   !observationSvg.includes('<desc') ||
   !observationSvg.includes(`OBSERVATION ${observationNumber}`) ||
   !observationSvg.includes('SNAPSHOT FINGERPRINT · SHA-256') ||
   !observationSvg.includes(latestProof.slice(0, 12)) ||
-  !observationSvg.includes(expectedFingerprintBars)
+  !expectedFingerprintBars.every((bar) => observationSvg.includes(bar))
 ) {
   throw new Error('Observation SVG fingerprint does not represent the latest snapshot proof');
 }
