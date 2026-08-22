@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 900 340">
   <title id="title">Daniele-Cangi public contribution rank in Denmark</title>
-  <desc id="desc">Rank improved from number 145 on 23 May 2026 to number 68 on 20 August 2026.</desc>
+  <desc id="desc">Rank improved from number 145 on 23 May 2026 to number 55 on 22 August 2026.</desc>
   <style>
     :root { color: #24292f; }
     .muted { fill: #57606a; }
@@ -20,11 +20,12 @@
   </style>
   <text class="label" x="92" y="26" font-size="18" font-weight="600">Public contribution rank</text>
   <text class="muted" x="846" y="26" text-anchor="end" font-size="13">Lower is better</text>
-  <g><line class="grid" x1="92" x2="846" y1="56.0" y2="56.0" stroke-width="1"/><text class="muted" x="78" y="61.0" text-anchor="end" font-size="13">#54</text></g>
-  <g><line class="grid" x1="92" x2="846" y1="163.0" y2="163.0" stroke-width="1"/><text class="muted" x="78" y="168.0" text-anchor="end" font-size="13">#107</text></g>
-  <g><line class="grid" x1="92" x2="846" y1="268.0" y2="268.0" stroke-width="1"/><text class="muted" x="78" y="273.0" text-anchor="end" font-size="13">#159</text></g>
-  <path d="M 92.0 239.7 L 469.0 110.5 L 846.0 84.3" class="line" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-  <g><circle class="point" cx="92.0" cy="239.7" r="7" stroke-width="3"/><text class="label" x="92.0" y="221.7" text-anchor="start" font-size="14" font-weight="600">#145 · 615 public</text><text class="muted" x="92.0" y="312" text-anchor="start" font-size="13">23 May 2026</text></g>
-  <g><circle class="point" cx="469.0" cy="110.5" r="7" stroke-width="3"/><text class="label" x="469.0" y="92.5" text-anchor="middle" font-size="14" font-weight="600">#81 · 1,412 public</text><text class="muted" x="469.0" y="312" text-anchor="middle" font-size="13">19 August 2026</text></g>
-  <g><circle class="point" cx="846.0" cy="84.3" r="7" stroke-width="3"/><text class="label" x="846.0" y="66.3" text-anchor="end" font-size="14" font-weight="600">#68 · 1,594 public</text><text class="muted" x="846.0" y="312" text-anchor="end" font-size="13">20 August 2026</text></g>
+  <g><line class="grid" x1="92" x2="846" y1="56.0" y2="56.0" stroke-width="1"/><text class="muted" x="78" y="61.0" text-anchor="end" font-size="13">#38</text></g>
+  <g><line class="grid" x1="92" x2="846" y1="162.0" y2="162.0" stroke-width="1"/><text class="muted" x="78" y="167.0" text-anchor="end" font-size="13">#100</text></g>
+  <g><line class="grid" x1="92" x2="846" y1="268.0" y2="268.0" stroke-width="1"/><text class="muted" x="78" y="273.0" text-anchor="end" font-size="13">#162</text></g>
+  <path d="M 92.0 238.9 L 343.3 129.5 L 594.7 107.3 L 846.0 85.1" class="line" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <g><circle class="point" cx="92.0" cy="238.9" r="7" stroke-width="3"/><text class="label" x="92.0" y="220.9" text-anchor="start" font-size="14" font-weight="600">#145 · 615 public</text><text class="muted" x="92.0" y="312" text-anchor="start" font-size="13">23 May 2026</text></g>
+  <g><circle class="point" cx="343.3" cy="129.5" r="7" stroke-width="3"/><text class="label" x="343.3" y="111.5" text-anchor="middle" font-size="14" font-weight="600">#81 · 1,412 public</text><text class="muted" x="343.3" y="312" text-anchor="middle" font-size="13">19 August 2026</text></g>
+  <g><circle class="point" cx="594.7" cy="107.3" r="7" stroke-width="3"/><text class="label" x="594.7" y="89.3" text-anchor="middle" font-size="14" font-weight="600">#68 · 1,594 public</text><text class="muted" x="594.7" y="312" text-anchor="middle" font-size="13">20 August 2026</text></g>
+  <g><circle class="point" cx="846.0" cy="85.1" r="7" stroke-width="3"/><text class="label" x="846.0" y="67.1" text-anchor="end" font-size="14" font-weight="600">#55 · 1,906 public</text><text class="muted" x="846.0" y="312" text-anchor="end" font-size="13">22 August 2026</text></g>
 </svg>

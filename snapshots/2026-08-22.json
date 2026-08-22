@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "country": "Denmark",
+  "country_code": "DK",
+  "account": "Daniele-Cangi",
+  "captured_at": "2026-08-22T22:52:00Z",
+  "time_precision": "minute",
+  "candidate_count": 911,
+  "metrics": {
+    "public_contributions": {
+      "rank": 55,
+      "value": 1906
+    },
+    "total_contributions": {
+      "rank": 66,
+      "value": 4062
+    },
+    "restricted_contributions": {
+      "value": 2156
+    },
+    "followers": {
+      "rank": 119,
+      "value": 289
+    }
+  },
+  "movement": {
+    "baseline_date": "2026-08-20",
+    "baseline_public_rank": 68,
+    "baseline_public_contributions": 1594,
+    "rank_improvement": 13,
+    "public_contributions_change": 312,
+    "public_contributions_change_percent": 19.6
+  },
+  "public_contribution_thresholds": {
+    "10": 6564,
+    "20": 4356,
+    "25": 3735,
+    "30": 3264,
+    "40": 2498,
+    "50": 2044,
+    "75": 1577,
+    "100": 1105
+  },
+  "previous_snapshot_date": "2026-08-20",
+  "previous_snapshot_sha256": "433190a929a461facceb6eba2e8307c58e6e4f81cbe460c825432a4e118021b0",
+  "provenance": {
+    "data_repository": "gayanvoice/top-github-users",
+    "data_commit_sha": "4505ce4784b874cc989b47eb5f22697e261ef41c",
+    "action_repository": "gayanvoice/top-github-users-action",
+    "action_commit_sha": "2b5c26a06abea2b0a7ba98a013ff0ce7fc913477",
+    "evidence_repository": "Daniele-Cangi/github-denmark-pulse",
+    "evidence_commit_sha": null,
+    "workflow_run_id": 32603178712,
+    "workflow_run_url": "https://github.com/Daniele-Cangi/github-denmark-pulse/actions/runs/32603178712",
+    "evidence_files": {
+      "cache/denmark.json": {
+        "sha256": "6393a9d51c9a4573ed2c19767333d696201abc303d6e697c59dad7c0959372a4"
+      },
+      "markdown/public_contributions/denmark.md": {
+        "sha256": "5943f98ed46785e09bf56f4b7ad75d04ddc69621f203e80b080f9447b6a9eede"
+      },
+      "markdown/total_contributions/denmark.md": {
+        "sha256": "1cdbd85a940f964ce4f3a5b2193e1777f144bd1ddebeac7b86ae7f70fef6ab11"
+      },
+      "markdown/followers/denmark.md": {
+        "sha256": "994690aa350820300f530189ca84f5b24a0f97fcb36430e2bc058235e2359093"
+      }
+    }
+  },
+  "validation": {
+    "candidate_records": 911,
+    "graphql_search_completed": true,
+    "maximum_observed_octokit_errors": 0,
+    "rows_checked": {
+      "public_contributions": 798,
+      "total_contributions": 834,
+      "followers": 911
+    },
+    "all_generated_rows_match_cache": true
+  }
+}

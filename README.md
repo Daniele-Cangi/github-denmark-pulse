@@ -8,11 +8,11 @@ A compact, evidence-backed history of
 <!-- latest:start -->
 | Public rank | Public contributions | Movement since 23 May 2026 |
 | ---: | ---: | ---: |
-| **#68** | **1,594** | **↑ 77 places** |
+| **#55** | **1,906** | **↑ 90 places** |
 
-Captured 20 August 2026. Secondary measures: **#72** by total contributions
-(3,803, including 2,209 restricted contributions) and **#113** by followers
-(298). [Inspect the snapshot](snapshots/2026-08-20.json).
+Captured 22 August 2026. Secondary measures: **#66** by total contributions
+(4,062, including 2,156 restricted contributions) and **#119** by followers
+(289). [Inspect the snapshot](snapshots/2026-08-22.json).
 <!-- latest:end -->
 
 ![Latest verifiable observation](assets/observation.svg)
@@ -37,7 +37,7 @@ logged only when a dated snapshot verifies them.
 | **Top 100** | 19 August 2026 | #81 | [Snapshot](snapshots/2026-08-19.json) |
 | **Top 75** | 20 August 2026 | #68 | [Snapshot](snapshots/2026-08-20.json) |
 
-**Next:** Top 50 — **18 places** away.
+**Next:** Top 50 — **5 places** away.
 <!-- milestones:end -->
 
 ## Trajectory
@@ -52,6 +52,7 @@ logged only when a dated snapshot verifies them.
 | 23 May 2026 | #145 | 615 | baseline |
 | 19 August 2026 | #81 | 1,412 | +64 places |
 | 20 August 2026 | #68 | 1,594 | +13 places |
+| 22 August 2026 | #55 | 1,906 | +13 places |
 <!-- history:end -->
 
 The chart is deliberately a trajectory, not a forecast. It connects two
