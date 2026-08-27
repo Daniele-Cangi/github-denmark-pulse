@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="observation-title observation-desc" viewBox="0 0 900 300">
-  <title id="observation-title">GitHub Denmark Pulse observation 04</title>
-  <desc id="observation-desc">On 22 August 2026, Daniele-Cangi ranked number 55 with 1,906 public contributions. The bars are a non-temporal fingerprint of the canonical snapshot hash, whose proof begins 7a955f748c27.</desc>
+  <title id="observation-title">GitHub Denmark Pulse observation 05</title>
+  <desc id="observation-desc">On 27 August 2026, Daniele-Cangi ranked number 47 with 2,238 public contributions. The bars are a non-temporal fingerprint of the canonical snapshot hash, whose proof begins 25d1e14d9f89.</desc>
   <style>
     .frame, .rule { fill: none; stroke: #d0d7de; }
     .text { fill: #24292f; }
@@ -16,49 +16,49 @@
   </style>
   <rect class="frame" x="0.5" y="0.5" width="899" height="299"/>
   <text class="text" x="60" y="38" font-size="14" font-weight="500" letter-spacing="2">GITHUB DENMARK PULSE</text>
-  <text class="muted" x="840" y="38" text-anchor="end" font-size="13">OBSERVATION 04</text>
+  <text class="muted" x="840" y="38" text-anchor="end" font-size="13">OBSERVATION 05</text>
   <line class="rule" x1="60" x2="840" y1="56" y2="56"/>
   <text class="muted" x="60" y="88" font-size="12" letter-spacing="1">PUBLIC RANK</text>
-  <text class="text" x="60" y="146" font-size="58" font-weight="500">#55</text>
+  <text class="text" x="60" y="146" font-size="58" font-weight="500">#47</text>
   <text class="muted" x="285" y="88" font-size="12" letter-spacing="1">PUBLIC CONTRIBUTIONS</text>
-  <text class="text" x="285" y="138" font-size="42" font-weight="500">1,906</text>
+  <text class="text" x="285" y="138" font-size="42" font-weight="500">2,238</text>
   <text class="muted" x="570" y="88" font-size="12" letter-spacing="1">MOVEMENT</text>
-  <text class="text" x="570" y="138" font-size="42" font-weight="500">↑13</text>
-  <text class="muted" x="570" y="162" font-size="12">since 20 August 2026</text>
+  <text class="text" x="570" y="138" font-size="42" font-weight="500">↑8</text>
+  <text class="muted" x="570" y="162" font-size="12">since 22 August 2026</text>
   <line class="rule" x1="60" x2="840" y1="180" y2="180"/>
   <text class="muted" x="60" y="204" font-size="11" letter-spacing="1.2">SNAPSHOT FINGERPRINT · SHA-256</text>
-  <rect class="fingerprint" x="60.0" y="228.0" width="12" height="22.0" rx="2"/>
-  <rect class="fingerprint" x="84.8" y="222.0" width="12" height="28.0" rx="2"/>
-  <rect class="fingerprint" x="109.5" y="224.0" width="12" height="26.0" rx="2"/>
-  <rect class="fingerprint" x="134.3" y="232.0" width="12" height="18.0" rx="2"/>
-  <rect class="fingerprint" x="159.1" y="232.0" width="12" height="18.0" rx="2"/>
-  <rect class="fingerprint" x="183.9" y="212.0" width="12" height="38.0" rx="2"/>
-  <rect class="fingerprint" x="208.6" y="228.0" width="12" height="22.0" rx="2"/>
-  <rect class="fingerprint" x="233.4" y="234.0" width="12" height="16.0" rx="2"/>
-  <rect class="fingerprint" x="258.2" y="226.0" width="12" height="24.0" rx="2"/>
-  <rect class="fingerprint" x="283.0" y="218.0" width="12" height="32.0" rx="2"/>
-  <rect class="fingerprint" x="307.7" y="238.0" width="12" height="12.0" rx="2"/>
-  <rect class="fingerprint" x="332.5" y="228.0" width="12" height="22.0" rx="2"/>
+  <rect class="fingerprint" x="60.0" y="238.0" width="12" height="12.0" rx="2"/>
+  <rect class="fingerprint" x="84.8" y="232.0" width="12" height="18.0" rx="2"/>
+  <rect class="fingerprint" x="109.5" y="216.0" width="12" height="34.0" rx="2"/>
+  <rect class="fingerprint" x="134.3" y="240.0" width="12" height="10.0" rx="2"/>
+  <rect class="fingerprint" x="159.1" y="214.0" width="12" height="36.0" rx="2"/>
+  <rect class="fingerprint" x="183.9" y="240.0" width="12" height="10.0" rx="2"/>
+  <rect class="fingerprint" x="208.6" y="234.0" width="12" height="16.0" rx="2"/>
+  <rect class="fingerprint" x="233.4" y="216.0" width="12" height="34.0" rx="2"/>
+  <rect class="fingerprint" x="258.2" y="224.0" width="12" height="26.0" rx="2"/>
+  <rect class="fingerprint" x="283.0" y="212.0" width="12" height="38.0" rx="2"/>
+  <rect class="fingerprint" x="307.7" y="226.0" width="12" height="24.0" rx="2"/>
+  <rect class="fingerprint" x="332.5" y="224.0" width="12" height="26.0" rx="2"/>
   <rect class="fingerprint" x="357.3" y="238.0" width="12" height="12.0" rx="2"/>
-  <rect class="fingerprint" x="382.1" y="230.0" width="12" height="20.0" rx="2"/>
-  <rect class="fingerprint" x="406.8" y="226.0" width="12" height="24.0" rx="2"/>
-  <rect class="fingerprint" x="431.6" y="222.0" width="12" height="28.0" rx="2"/>
-  <rect class="fingerprint" x="456.4" y="238.0" width="12" height="12.0" rx="2"/>
-  <rect class="fingerprint" x="481.2" y="236.0" width="12" height="14.0" rx="2"/>
-  <rect class="fingerprint" x="505.9" y="234.0" width="12" height="16.0" rx="2"/>
-  <rect class="fingerprint" x="530.7" y="218.0" width="12" height="32.0" rx="2"/>
-  <rect class="fingerprint" x="555.5" y="240.0" width="12" height="10.0" rx="2"/>
-  <rect class="fingerprint" x="580.3" y="220.0" width="12" height="30.0" rx="2"/>
-  <rect class="fingerprint" x="605.0" y="226.0" width="12" height="24.0" rx="2"/>
-  <rect class="fingerprint" x="629.8" y="234.0" width="12" height="16.0" rx="2"/>
-  <rect class="fingerprint" x="654.6" y="216.0" width="12" height="34.0" rx="2"/>
-  <rect class="fingerprint" x="679.4" y="234.0" width="12" height="16.0" rx="2"/>
-  <rect class="fingerprint" x="704.1" y="220.0" width="12" height="30.0" rx="2"/>
+  <rect class="fingerprint" x="382.1" y="236.0" width="12" height="14.0" rx="2"/>
+  <rect class="fingerprint" x="406.8" y="238.0" width="12" height="12.0" rx="2"/>
+  <rect class="fingerprint" x="431.6" y="236.0" width="12" height="14.0" rx="2"/>
+  <rect class="fingerprint" x="456.4" y="224.0" width="12" height="26.0" rx="2"/>
+  <rect class="fingerprint" x="481.2" y="240.0" width="12" height="10.0" rx="2"/>
+  <rect class="fingerprint" x="505.9" y="242.0" width="12" height="8.0" rx="2"/>
+  <rect class="fingerprint" x="530.7" y="222.0" width="12" height="28.0" rx="2"/>
+  <rect class="fingerprint" x="555.5" y="220.0" width="12" height="30.0" rx="2"/>
+  <rect class="fingerprint" x="580.3" y="228.0" width="12" height="22.0" rx="2"/>
+  <rect class="fingerprint" x="605.0" y="216.0" width="12" height="34.0" rx="2"/>
+  <rect class="fingerprint" x="629.8" y="242.0" width="12" height="8.0" rx="2"/>
+  <rect class="fingerprint" x="654.6" y="218.0" width="12" height="32.0" rx="2"/>
+  <rect class="fingerprint" x="679.4" y="230.0" width="12" height="20.0" rx="2"/>
+  <rect class="fingerprint" x="704.1" y="226.0" width="12" height="24.0" rx="2"/>
   <rect class="fingerprint" x="728.9" y="218.0" width="12" height="32.0" rx="2"/>
   <rect class="fingerprint" x="753.7" y="240.0" width="12" height="10.0" rx="2"/>
-  <rect class="fingerprint" x="778.5" y="220.0" width="12" height="30.0" rx="2"/>
-  <rect class="fingerprint" x="803.2" y="226.0" width="12" height="24.0" rx="2"/>
-  <rect class="fingerprint" x="828.0" y="228.0" width="12" height="22.0" rx="2"/>
-  <text class="muted" x="60" y="278" font-size="12" letter-spacing="0.5">ENGINE 2b5c26a0 · PROOF 7a955f748c27</text>
-  <text class="muted" x="840" y="278" text-anchor="end" font-size="12">22 August 2026</text>
+  <rect class="fingerprint" x="778.5" y="242.0" width="12" height="8.0" rx="2"/>
+  <rect class="fingerprint" x="803.2" y="216.0" width="12" height="34.0" rx="2"/>
+  <rect class="fingerprint" x="828.0" y="238.0" width="12" height="12.0" rx="2"/>
+  <text class="muted" x="60" y="278" font-size="12" letter-spacing="0.5">ENGINE 2b5c26a0 · PROOF 25d1e14d9f89</text>
+  <text class="muted" x="840" y="278" text-anchor="end" font-size="12">27 August 2026</text>
 </svg>
